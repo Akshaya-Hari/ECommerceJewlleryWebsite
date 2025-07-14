@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>About Us - Ohm Samundesvarri Jewellery</title>
+      <style>
+         body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+         background-color: #f5f5dc;
+         }
+         header {
+         background-color: #00276a;
+         color: #f5f5dc;
+         padding: 20px;
+         text-align: center;
+         }
+         .sidebar {
+         position: fixed;
+         left: -250px;
+         top: 0;
+         width: 250px;
+         height: 100%;
+         background: #00276a;
+         padding-top: 20px;
+         transition: 0.3s;
+         z-index: 9;
+         }
+         .sidebar a {
+         display: block;
+         color: #f5f5dc;
+         text-decoration: none;
+         padding: 10px;
+         }
+         .sidebar a:hover { background: #00276a; }
+         .menu-btn {
+         font-size: 20px;
+         cursor: pointer;
+         color: #f5f5dc;
+         position: absolute;
+         left: 20px;
+         top: 20px;
+         }
+         .content {
+         margin: 20px;
+         text-align: center;
+         }
+         .footer {
+         background: #f5f5dc;
+         color: #00276a;
+         padding: 20px;
+         text-align: center;
+         }
+         .footer a {
+         color: #00276a;
+         margin: 0 10px;
+         text-decoration: none;
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <h1>Ohm Samundesvarri Jewellery</h1>
+         <div class="menu-btn" onclick="openMenu()">&#9776; Menu</div>
+      </header>
+      <div class="sidebar" id="sidebar">
+         <a href="#" onclick="closeMenu()">&#10006; Close</a>
+         <a href="homepage.html">Home</a>
+         <a href="about.html">About</a>
+         <a href="silver.html">Silver</a>
+         <a href="gold.html">Gold</a>
+         <a href="diamond.html">Diamond</a>
+         <a href="savingscheme.html">Saving Schemes</a>
+         <a href="cart.html">category</a>
+      </div>
+      <div class="content">
+         <h2>About Us</h2>
+         <p>Welcome to Ohm Samundesvarri Jewellery, where we have been crafting exquisite jewellery since 1960. Our commitment to quality and craftsmanship is unparalleled, and we take pride in offering our customers the finest pieces.</p>
+         <video width="600" controls>
+            <source src="about.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+         </video>
+      </div>
+      <div class="footer">
+         <p>Contact: 7373033567 | Visit us at: 435, Main Bazzar, Vellore. | Mail: </p>
+         <a href="#">WhatsApp</a> | <a href="#">Facebook</a> | <a href="#">Instagram</a>
+         <p>&copy; 2025 Ohm Samundesvarri Jewellery All Rights Reserved.</p>
+      </div>
+      <script>
+         function openMenu() {
+             document.getElementById("sidebar").style.left = "0";
+         }
+         
+         function closeMenu() {
+             document.getElementById("sidebar").style.left = "-250px";
+         }
+      </script>
+   </body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Silver Products - Ohm Samundesvarri Jewellery</title>
+      <style>
+         body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+         background-color: #f5f5dc;
+         }
+         header {
+         background-color: #00276a;
+         color: #f5f5dc;
+         padding: 20px;
+         text-align: center;
+         position: relative;
+         }
+         .menu-btn {
+         font-size: 20px;
+         cursor: pointer;
+         color: #f5f5dc;
+         position: absolute;
+         left: 20px;
+         top: 20px;
+         }
+         nav a {
+         color: #f5f5dc;
+         margin: 0 15px;
+         text-decoration: none;
+         }
+         .sidebar {
+         position: fixed;
+         left: -250px;
+         top: 0;
+         width: 250px;
+         height: 100%;
+         background: #00276a;
+         padding-top: 20px;
+         transition: 0.3s;
+         z-index: 9;
+         }
+         .sidebar a {
+         display: block;
+         color: #f5f5dc;
+         text-decoration: none;
+         padding: 10px;
+         }
+         .sidebar a:hover { background: #00276a; }
+         .submenu { display: none; padding-left: 20px; }
+         .filter {
+         margin: 20px;
+         text-align: center;
+         }
+         .filter button {
+         margin: 0 10px;
+         padding: 10px 15px;
+         background-color: #00276a;
+         color: #f5f5dc;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         }
+         .filter button:hover {
+         background-color: #f5f5dc;
+         color: #00276a;
+         }
+         .sort {
+         margin: 20px;
+         text-align: center;
+         }
+         .sort select {
+         padding: 10px;
+         border-radius: 5px;
+         border: 1px solid #00276a;
+         }
+         .product-container {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         margin: 20px;
+         }
+         .product {
+         background-color: #f5f5dc;
+         border: 1px solid #00276a;
+         border-radius: 10px;
+         margin: 10px;
+         padding: 10px;
+         text-align: center;
+         width: 200px;
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+         }
+         .product img {
+         width: 100%;
+         border-radius: 10px;
+         }
+         .product p {
+         margin: 5px 0;
+         }
+         .product .price {
+         font-weight: bold;
+         color: #00276a;
+         }
+         .product button {
+         padding: 5px 10px;
+         background-color: #00276a;
+         color: #f5f5dc;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         }
+         .product button:hover {
+         background-color: #f5f5dc;
+         color: #00276a;
+         }
+         .modal {
+         display: none;
+         position: fixed;
+         z-index: 10;
+         left: 0;
+         top: 0;
+         width: 100%;
+         height: 100%;
+         background-color: rgba(0, 0, 0, 0.5);
+         justify-content: center;
+         align-items: center;
+         }
+         .modal-content {
+         background: #fff;
+         padding: 20px;
+         border-radius: 10px;
+         text-align: center;
+         position: relative;
+         max-width: 400px;
+         }
+         .close {
+         position: absolute;
+         top: 10px;
+         right: 15px;
+         font-size: 24px;
+         cursor: pointer;
+         }
+         #modalImg {
+         width: 100%;
+         border-radius: 10px;
+         }
+         .footer {
+         background: #f5f5dc;
+         color: #00276a;
+         padding: 20px;
+         text-align: center;
+         }
+         .footer a {
+         color: #00276a;
+         margin: 0 10px;
+         text-decoration: none;
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <h1>Ohm Samundesvarri Jewellery</h1>
+         <div class="menu-btn" onclick="openMenu()">&#9776; Menu</div>
+      </header>
+      <main>
+         <h2>Silver Products</h2>
+         <div class="sidebar" id="sidebar">
+            <a href="#" onclick="closeMenu()">&#10006; Close</a>
+            <a href="homepage.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="silver.html">Silver</a>
+            <a href="gold.html">Gold</a>
+            <a href="diamond.html">Diamond</a>
+            <a href="savingscheme.html">Saving schemes</a>
+            <a href="cart.html">Cart</a>
+         </div>
+         <div class="filter">
+            <h3>Filter by Category:</h3>
+            <button onclick="filterProducts('all')">All</button>
+            <button onclick="filterProducts('ring')">Rings</button>
+            <button onclick="filterProducts('chain')">Chains</button>
+            <button onclick="filterProducts('bracelet')">Bracelets</button>
+         </div>
+         <div class="sort">
+            <h3>Sort by:</h3>
+            <select id="sortSelect" onchange="sortProducts()">
+               <option value="default">Select</option>
+               <option value="priceAsc">Price: Low to High</option>
+               <option value="priceDesc">Price: High to Low</option>
+            </select>
+         </div>
+         <div class="product-container" id="productContainer">
+            <div class="product" data-category="ring" data-price="2000">
+               <img src="silver_ring.webp" alt="silver Ring">
+               <p>silver Ring</p>
+               <p class="price">2000</p>
+               <button onclick="viewDetails('Silver Ring')">View Details</button>
+               <button onclick="addToCart('Silver Ring')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="chain" data-price="5100">
+               <img src="silver_chain.webp" alt="silver Chain">
+               <p>silver Chain</p>
+               <p class="price">5100</p>
+               <button onclick="viewDetails('silver Chain')">View Details</button>
+               <button onclick="addToCart('Silver Chain')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="chain" data-price="6750">
+               <img src="silver_chain2.webp" alt="silver Chain">
+               <p>silver Chain</p>
+               <p class="price">6750</p>
+               <button onclick="viewDetails('silver Chain 2')">View Details</button>
+               <button onclick="addToCart('Silver Chain 2',)">Add to Cart</button>
+            </div>
+            <div class="product" data-category="bracelet" data-price="3825">
+               <img src="silver_bracelet.webp" alt="silver Bracelet">
+               <p>silver Bracelet</p>
+               <p class="price">3825</p>
+               <button onclick="viewDetails('silver Bracelet')">View Details</button>
+               <button onclick="addToCart('Silver Bracelet')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="bracelet" data-price="6750">
+               <img src="silver_bracelet2.webp" alt="silver Bracelet">
+               <p>silver Bracelet</p>
+               <p class="price">6750</p>
+               <button onclick="viewDetails('silver Bracelet 2')">View Details</button>
+               <button onclick="addToCart('Silver Bracelet 2')">Add to Cart</button>
+            </div>
+            <div id="productModal" class="modal">
+               <div class="modal-content">
+                  <span class="close" onclick="closeModal()">&times;</span>
+                  <img id="modalImg" src="" alt="Product Image">
+                  <h2 id="modalTitle"></h2>
+                  <p><strong>Type:</strong> <span id="modalType"></span></p>
+                  <p><strong>Weight:</strong> <span id="modalWeight"></span> g</p>
+                  <p><strong>Total Cost:</strong> ₹<span id="modalTotal"></span></p>
+               </div>
+            </div>
+         </div>
+      </main>
+      <div class="footer">
+         <p>Contact: 7373033567 | Visit us at: 435, Main Bazzar, Vellore. | Mail: </p>
+         <a href="#">WhatsApp</a> | <a href="#">Facebook</a> | <a href="#">Instagram</a>
+         <p>&copy; 2025 Ohm Samundesvarri Jewellery All Rights Reserved.</p>
+      </div>
+      <script>
+         function openMenu() {
+             document.getElementById("sidebar").style.left = "0";
+         }
+         
+         function closeMenu() {
+             document.getElementById("sidebar").style.left = "-250px";
+             document.getElementById("header").style.marginLeft = "0";
+         }
+         
+         function filterProducts(category) {
+             const products = document.querySelectorAll('.product');
+             products.forEach(product => {
+                 if (category === 'all' || product.getAttribute('data-category') === category) {
+                     product.style.display = 'block';
+                 } else {
+                     product.style.display = 'none';
+                 }
+             });
+         }
+         
+         function sortProducts() {
+             const container = document.getElementById('productContainer');
+             const products = Array.from(container.children);
+             const sortValue = document.getElementById('sortSelect').value;
+         
+             products.sort((a, b) => {
+                 const priceA = parseFloat(a.getAttribute('data-price'));
+                 const priceB = parseFloat(b.getAttribute('data-price'));
+                 if (sortValue === 'priceAsc') {
+                     return priceA - priceB;
+                 } else if (sortValue === 'priceDesc') {
+                     return priceB - priceA;
+                 }
+                 return 0;
+             });
+         
+             container.innerHTML = '';
+             products.forEach(product => {
+                 container.appendChild(product);
+             });
+         }
+         
+         function viewDetails(productName) {
+             alert(`Viewing details for: ${productName}`);
+         }
+         function viewDetails(productName) {
+         const products = {
+         "Silver Ring": { img: "silver_ring.webp", type: "Ring", weight: 8, pricePerGram: 250 },
+         "silver Chain": { img: "silver_chain.webp", type: "Chain", weight: 20, pricePerGram: 255 },
+         "silver Chain 2": { img: "silver_chain2.webp", type: "Chain", weight: 25, pricePerGram: 270 },
+         "silver Bracelet": { img: "silver_bracelet.webp", type: "Bracelet", weight: 15, pricePerGram: 255 },
+         "silver Bracelet 2": { img: "silver_bracelet2.webp", type: "Bracelet", weight: 25, pricePerGram: 270 }
+         };
+         
+         const product = products[productName];
+         
+         if (product) {
+         let totalCost = product.weight * product.pricePerGram;
+         
+         document.getElementById('modalImg').src = product.img;
+         document.getElementById('modalTitle').innerText = productName;
+         document.getElementById('modalType').innerText = product.type;
+         document.getElementById('modalWeight').innerText = product.weight;
+         document.getElementById('modalTotal').innerText = totalCost.toLocaleString("en-IN");
+         
+         document.getElementById('productModal').style.display = "flex";
+         }
+         }
+         
+         function closeModal() {
+         document.getElementById('productModal').style.display = "none";
+         }
+         
+         let cart = [];
+         function addToCart(productName, weight, pricePerGram) {
+         const product = {
+           name: productName
+         };
+         cart.push(product);
+         alert(`${productName} has been added to your cart!`);
+         }
+         function addToCart(productName, weight, pricePerGram) {
+         const product = {
+           name: productName,
+         };
+         cart.push(product);
+         localStorage.setItem('cart', JSON.stringify(cart));
+         alert(`${productName} has been added to your cart!`);
+         }
+      </script>
+   </body>
+</html>

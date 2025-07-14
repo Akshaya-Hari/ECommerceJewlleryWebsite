@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Ohm Smundesvarri Jewellery</title>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+      <style>
+         * { margin: 0; padding: 0; box-sizing: border-box; }
+         body {
+         font-family: 'Roboto', sans-serif;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: flex-start;
+         height: 100%;
+         margin: 0;
+         background-color: #f5f5dc;
+         transition: all 0.3s ease;
+         }
+         .header {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding: 15px;
+         background: #00276a;
+         color: #00276a;
+         width: 100%;
+         position: fixed;
+         top: 0;
+         left: 0;
+         z-index: 10;
+         }
+         .logo {
+         display: flex;
+         align-items: center;
+         flex-grow: 1;
+         }
+         .logo img {
+         width: 120px;
+         height: auto;
+         margin-right: 10px;
+         }
+         .logo h2 {
+         font-size: 20px;
+         color: #f5f5dc;
+         margin: 0;
+         text-align: center;
+         }
+         .logo {
+         display: flex;
+         align-items: center;
+         }
+         .logo img {
+         width: 120px;
+         height: auto;
+         margin-right: 10px;
+         }
+         .bold-text {
+         font-weight: bold; 
+         font-size: 45px;
+         text-align: center;
+         }
+         .italic-text {
+         font-style: italic;
+         font-size: 16px;
+         font-weight: normal;
+         text-align: center;
+         }
+         .search-box input {
+         padding: 7px;
+         width: 250px;
+         border: none;
+         border-radius: 5px;
+         }
+         .sidebar {
+         position: fixed;
+         left: -250px;
+         top: 0;
+         width: 250px;
+         height: 100%;
+         background: #00276a;
+         padding-top: 20px;
+         transition: 0.3s;
+         z-index: 9;
+         }
+         .sidebar a {
+         display: block;
+         color: #f5f5dc;
+         text-decoration: none;
+         padding: 10px;
+         }
+         .sidebar a:hover { background: #00276a; }
+         .submenu { display: none; padding-left: 20px; }
+         .menu-btn { font-size: 20px; cursor: pointer; color: #f5f5dc;}
+         .carousel-container {
+         position: relative;
+         width: 30%;
+         margin-top: 120px;
+         margin-bottom: 30px;
+         }
+         .carousel img {
+         display: none;
+         width: 100%;
+         border-radius: 10px;
+         }
+         .carousel img.active {
+         display: block;
+         }
+         .btn-prev, .btn-next {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         background-color: #00276a;
+         color: #f5f5dc;
+         border: none;
+         padding: 10px;
+         cursor: pointer;
+         border-radius: 5px;
+         z-index: 10;
+         display: none;
+         }
+         .btn-prev {
+         left: 10px;
+         }
+         .btn-next {
+         right: 10px;
+         }
+         button {
+         background-color: #00276a;
+         color: #f5f5dc;
+         border: none;
+         padding: 10px;
+         cursor: pointer;
+         margin: 5px;
+         border-radius: 5px;
+         }
+         button:hover {
+         background-color: #f5f5dc;
+         color: #00276a;
+         }
+         .products {
+         text-align: center;
+         margin: 30px 0;
+         }
+         .products h2{
+         color: #00276a;
+         }
+         .product-container {
+         display: flex;
+         justify-content: center;
+         gap: 20px;
+         }
+         .product {
+         width: 200px;
+         padding: 10px;
+         border: 1px solid #00276a;
+         border-radius: 10px;
+         }
+         .product img {
+         width: 100%;
+         border-radius: 10px;
+         }
+         .footer {
+         background: #f5f5dc;
+         color: #00276a;
+         padding: 20px;
+         text-align: center;
+         }
+         .footer a {
+         color: #00276a;
+         margin: 0 10px;
+         text-decoration: none;
+         }
+         .submenu a {
+         padding: 5px 10px;
+         color: #f5f5dc;
+         }
+         .chatbot {
+         position: fixed;
+         bottom: 20px;
+         right: 20px;
+         width: 300px;
+         border: 1px solid #00276a;
+         border-radius: 10px;
+         background-color: #00276a;
+         display: flex;
+         flex-direction: column;
+         }
+         .chatbot-header {
+         background-color: #00276a;
+         color: #f5f5dc;
+         padding: 10px;
+         text-align: center;
+         border-radius: 10px 10px 0 0;
+         }
+         .user-message {
+         background-color: #00276a;
+         color: #f5f5dc;
+         padding: 5px;
+         border-radius: 5px;
+         margin: 5px 0;
+         }
+         .bot-message {
+         background-color: #00276a;
+         color: #f5f5dc;
+         padding: 5px;
+         border-radius: 5px;
+         margin: 5px 0;
+         }
+         .chatbot input {
+         padding: 10px;
+         border: none;
+         border-radius: 5px;
+         margin: 5px;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="header" id="header">
+         <div class="menu-btn" onclick="openMenu()">&#9776;</div>
+         <div class="logo">
+            <img src="Logo.jpg" alt="Logo">
+            <h2><span class="bold-text">Ohm Samundesvarri Jewellery</span><br><span class="italic-text">Since 1960 <br> Quality at its Finest</span></h2>
+         </div>
+      </div>
+      <div class="sidebar" id="sidebar">
+         <a href="#" onclick="closeMenu()">&#10006; Close</a>
+         <a href="homepage.html">Home</a>
+         <a href="about.html">About</a>
+         <a href="silver.html">Silver</a>
+         <a href="gold.html">Gold</a>
+         <a href="diamond.html">Diamond</a>
+         <a href="savingscheme.html">Saving schemes</a>
+         <a href="cart.html">Cart</a>
+      </div>
+      <div class="carousel-container" id="carouselContainer">
+         <div class="carousel" id="carousel">
+            <img src="product1.jpg" alt="Slide 1" class="active">
+            <img src="product2.jpg" alt="Slide 2">
+            <img src="product3.png" alt="Slide 3">
+         </div>
+         <button class="btn-prev" onclick="prevImage()">&#10094;</button>
+         <button class="btn-next" onclick="nextImage()">&#10095;</button>
+      </div>
+      <div class="products">
+         <h2>
+         Trending Products
+         <div class="product-container">
+            <div class="product">
+               <img src="product1.jpg" alt="Product 1">
+               <p>22KT Gold Necklace</p>
+            </div>
+            <div class="product">
+               <img src="product2.jpg" alt="Product 2">
+               <p>22KT Gold Hip Belt</p>
+            </div>
+         </div>
+      </div>
+      <div class="chatbot">
+         <div class="chatbot-header">Chatbot</div>
+         <div class="chatbot-messages" id="chatbotMessages"></div>
+         <input type="text" id="userInput" placeholder="Type your question...">
+         <button onclick="sendMessage()">Send</button>
+      </div>
+      <div class="footer">
+         <p>Contact: 7373033567 | Visit us at: 435, Main Bazzar, Vellore. | Mail: </p>
+         <a href="#">WhatsApp</a> | <a href="#">Facebook</a> | <a href="#">Instagram</a>
+         <p>&copy; 2025 Ohm Samundesvarri Jewellery All Rights Reserved.</p>
+      </div>
+      <script>
+         function openMenu() {
+             document.getElementById("sidebar").style.left = "0";
+             document.getElementById("carouselContainer").style.marginLeft = "250px"; 
+             document.getElementById("header").style.marginLeft = "250px"; 
+         }
+         
+         function closeMenu() {
+             document.getElementById("sidebar").style.left = "-250px";
+             document.getElementById("carouselContainer").style.marginLeft = "0"; 
+             document.getElementById("header").style.marginLeft = "0"; 
+         }
+         
+         function toggleSubmenu(menuId) {
+             const submenu = document.getElementById(menuId);
+             submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+         }
+         let currentIndex = 0;
+         const images = document.querySelectorAll('#carousel img');
+         function showImage(index) {
+             images.forEach((img, i) => {
+                 img.classList.remove('active');
+                 if (i === index) {
+                     img.classList.add('active');
+                 }
+             });
+         }
+         function nextImage() {
+             currentIndex = (currentIndex + 1) % images.length;
+             showImage(currentIndex);
+         }
+         function prevImage() {
+             currentIndex = (currentIndex - 1 + images.length) % images.length;
+             showImage(currentIndex);
+         }
+         const carouselContainer = document.getElementById('carouselContainer');
+         const btnPrev = document.querySelector('.btn-prev');
+         const btnNext = document.querySelector('.btn-next');
+         
+         function showButtons() {
+         const rect = carouselContainer.getBoundingClientRect();
+         if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+         btnPrev.style.display = 'block';
+         btnNext.style.display = 'block';
+         } else {
+         btnPrev.style.display = 'none';
+         btnNext.style.display = 'none';
+         }
+         }
+         
+         window.addEventListener('scroll', showButtons);
+         
+         showButtons();
+         const qaPairs = {
+         "What is your name?": "I am a chatbot created to assist you.",
+         "What do you do?": "I can help you with your queries about our products.",
+         "How can I contact support?": "You can reach support via email or phone.",
+         };
+         
+         function sendMessage() {
+         const userInput = document.getElementById("userInput").value;
+         const messagesDiv = document.getElementById("chatbotMessages");
+         
+         if (userInput) {
+         const userMessage = document.createElement("div");
+         userMessage.classList.add("user-message");
+         userMessage.textContent = "You: " + userInput;
+         messagesDiv.appendChild(userMessage);
+         
+         const botResponse = qaPairs[userInput] || "Sorry, I don't understand that.";
+         const botMessage = document.createElement("div");
+         botMessage.classList.add("bot-message");
+         botMessage.textContent = "Bot: " + botResponse;
+         messagesDiv.appendChild(botMessage);
+         
+         document.getElementById("userInput").value = '';
+         
+         messagesDiv.scrollTop = messagesDiv.scrollHeight;
+         }
+         }
+      </script>
+   </body>
+</html>

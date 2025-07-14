@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Your Cart - Ohm Samundesvarri Jewellery</title>
+      <style>
+         body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+         background-color: #f5f5dc;
+         }
+         header {
+         background-color: #00276a;
+         color: #f5f5dc;
+         padding: 20px;
+         text-align: center;
+         }
+         .menu-btn {
+         font-size: 20px;
+         cursor: pointer;
+         color: #f5f5dc;
+         position: absolute;
+         left: 20px; 
+         top: 20px;
+         }
+         .sidebar {
+         position: fixed;
+         left: -250px;
+         top: 0;
+         width: 250px;
+         height: 100%;
+         background: #00276a;
+         padding-top: 20px;
+         transition: 0.3s;
+         z-index: 9;
+         }
+         .sidebar a {
+         display: block;
+         color: #f5f5dc;
+         text-decoration: none;
+         padding: 10px;
+         }
+         .cart-container {
+         margin: 20px;
+         }
+         .cart-item {
+         border: 1px solid #00276a;
+         border-radius: 10px;
+         padding: 10px;
+         margin: 10px 0;
+         background-color: #fff;
+         }
+         .remove-button {
+         background-color: #ff1a1a;
+         color: white;
+         border: none;
+         border-radius: 5px;
+         padding: 5px 10px;
+         cursor: pointer;
+         }
+         .remove-button:hover {
+         background-color: #ff1a1a;
+         }
+         .footer {
+         background: #f5f5dc;
+         color: #00276a;
+         padding: 20px;
+         text-align: center;
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <h1>Ohm Samundesvarri Jewellery</h1>
+         <div class="menu-btn" onclick="openMenu()">&#9776; Menu</div>
+      </header>
+      <main>
+      <h2>Cart</h2>
+      <div class="sidebar" id="sidebar">
+         <a href="about.html" onclick="closeMenu()">&#10006; Close</a>
+         <a href="homepage.html">Home</a>
+         <a href="#">About</a>
+         <a href="silver.html">Silver</a> 
+         <a href="gold.html">Gold</a> 
+         <a href="diamond.html">Diamond</a>
+         <a href="savingscheme.html">Saving schemes</a>
+         <a href="cart.html">Cart</a>
+      </div>
+      <div class="cart-container" id="cartContainer"></div>
+      <div class="footer">
+         <p>Contact: 7373033567 | Visit us at: 435, Main Bazzar, Vellore. | Mail: </p>
+         <a href="#">WhatsApp</a> | <a href="#">Facebook</a> | <a href="#">Instagram</a>
+         <p>&copy; 2025 Ohm Samundesvarri Jewellery All Rights Reserved.</p>
+      </div>
+      <script>
+         function openMenu() {
+           document.getElementById("sidebar").style.left = "0";
+         }
+         
+         function closeMenu() {
+           document.getElementById("sidebar").style.left = "-250px";
+         }
+         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+         
+         function displayCart() {
+             const cartContainer = document.getElementById('cartContainer');
+             cartContainer.innerHTML = '';
+         
+             if (cart.length === 0) {
+                 cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+                 return;
+             }
+         
+             cart.forEach((item, index) => {
+                 const cartItem = document.createElement('div');
+                 cartItem.className = 'cart-item';
+                 cartItem.innerHTML = `
+                     <h3>${item.name}</h3>
+                     <button class="remove-button" onclick="removeFromCart(${index})">Remove</button>
+                 `;
+                 cartContainer.appendChild(cartItem);
+             });
+         }
+         
+         function removeFromCart(index) {
+             cart.splice(index, 1);
+             localStorage.setItem('cart', JSON.stringify(cart));
+             displayCart();
+         }
+         displayCart();
+      </script>
+   </body>
+</html>

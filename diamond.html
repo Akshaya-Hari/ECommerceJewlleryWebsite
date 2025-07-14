@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Diamond Products - Ohm Samundesvarri Jewellery</title>
+      <style>
+         body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+         background-color: #f5f5dc;
+         }
+         header {
+         background-color: #00276a;
+         color: #f5f5dc;
+         padding: 20px;
+         text-align: center;
+         position: relative;
+         }
+         .menu-btn {
+         font-size: 20px;
+         cursor: pointer;
+         color: #f5f5dc;
+         position: absolute;
+         left: 20px; 
+         top: 20px;
+         }
+         .sidebar {
+         position: fixed;
+         left: -250px;
+         top: 0;
+         width: 250px;
+         height: 100%;
+         background: #00276a;
+         padding-top: 20px;
+         transition: 0.3s;
+         z-index: 9;
+         }
+         .sidebar a {
+         display: block;
+         color: #f5f5dc;
+         text-decoration: none;
+         padding: 10px;
+         }
+         .filter {
+         margin: 20px;
+         text-align: center;
+         }
+         .filter button {
+         margin: 0 10px;
+         padding: 10px 15px;
+         background-color: #00276a;
+         color: #f5f5dc;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         }
+         .sort {
+         margin: 20px;
+         text-align: center;
+         }
+         .sort select {
+         padding: 10px;
+         border-radius: 5px;
+         border: 1px solid #00276a;
+         }
+         .product-container {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         margin: 20px;
+         }
+         .product {
+         background-color: #f5f5dc;
+         border: 1px solid #00276a;
+         border-radius: 10px;
+         margin: 10px;
+         padding: 10px;
+         text-align: center;
+         width: 200px;
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+         }
+         .product img {
+         width: 100%;
+         border-radius: 10px;
+         }
+         .product .price {
+         font-weight: bold;
+         color: #00276a;
+         }
+         .product button {
+         padding: 5px 10px;
+         background-color: #00276a;
+         color: #f5f5dc;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         }
+         .product button:hover {
+         background-color: #f5f5dc;
+         color: #00276a;
+         }
+         .modal {
+         display: none;
+         position: fixed;
+         z-index: 10;
+         left: 0;
+         top: 0;
+         width: 100%;
+         height: 100%;
+         background-color: rgba(0, 0, 0, 0.5);
+         justify-content: center;
+         align-items: center;
+         }
+         .modal-content {
+         background: #fff;
+         padding: 20px;
+         border-radius: 10px;
+         text-align: center;
+         position: relative;
+         max-width: 400px;
+         }
+         .close {
+         position: absolute;
+         top: 10px;
+         right: 15px;
+         font-size: 24px;
+         cursor: pointer;
+         }
+         #modalImg {
+         width: 100%;
+         border-radius: 10px;
+         }
+         .footer {
+         background: #f5f5dc;
+         color: #00276a;
+         padding: 20px;
+         text-align: center;
+         }
+         .footer a {
+         color: #00276a;
+         margin: 0 10px;
+         text-decoration: none;
+         }
+      </style>
+   </head>
+   <body>
+      <header>
+         <h1>Ohm Samundesvarri Jewellery</h1>
+         <div class="menu-btn" onclick="openMenu()">&#9776; Menu</div>
+      </header>
+      <main>
+         <h2>Diamond Products</h2>
+         <div class="sidebar" id="sidebar">
+            <a href="about.html" onclick="closeMenu()">&#10006; Close</a>
+            <a href="homepage.html">Home</a>
+            <a href="#">About</a>
+            <a href="silver.html">Silver</a> 
+            <a href="gold.html">Gold</a> 
+            <a href="diamond.html">Diamond</a>
+            <a href="savingscheme.html">Saving schemes</a>
+            <a href="cart.html">Cart</a>
+         </div>
+         <div class="filter">
+            <h3>Filter by Category:</h3>
+            <button onclick="filterProducts('all')">All</button>
+            <button onclick="filterProducts('ring')">Rings</button>
+            <button onclick="filterProducts('chain')">Chains</button>
+            <button onclick="filterProducts('bracelet')">Bracelets</button>
+         </div>
+         <div class="sort">
+            <h3>Sort by:</h3>
+            <select id="sortSelect" onchange="sortProducts()">
+               <option value="default">Select</option>
+               <option value="priceAsc">Price: Low to High</option>
+               <option value="priceDesc">Price: High to Low</option>
+            </select>
+         </div>
+         <div class="product-container" id="productContainer">
+            <div class="product" data-category="ring" data-price="67480">
+               <img src="diamond_ring.webp" alt="diamond Ring">
+               <p>diamond Ring</p>
+               <p class="price">67480</p>
+               <button onclick="viewDetails('diamond Ring')">View Details</button>
+               <button onclick="addToCart('diamond Chain')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="chain" data-price="247220">
+               <img src="diamond_chain.webp" alt="diamond Chain">
+               <p>diamond Chain</p>
+               <p class="price">247220</p>
+               <button onclick="viewDetails('diamond Chain')">View Details</button>
+               <button onclick="addToCart('diamond Chain')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="bracelet" data-price="106438">
+               <img src="diamond_bracelet.webp" alt="diamond Bracelet">
+               <p>diamond Bracelet</p>
+               <p class="price">106438</p>
+               <button onclick="viewDetails('diamond Bracelet')">View Details</button>
+               <button onclick="addToCart('diamond Bracelet')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="ring" data-price="100868">
+               <img src="diamond_ring2.webp" alt="diamond Ring 2">
+               <p>diamond Ring </p>
+               <p class="price">100868</p>
+               <button onclick="viewDetails('diamond Ring 2')">View Details</button>
+               <button onclick="addToCart('diamond Ring 2')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="bracelet" data-price="173060">
+               <img src="diamond_bracelet2.webp" alt="diamond Bracelet 2">
+               <p>diamond Bracelet </p>
+               <p class="price">173060</p>
+               <button onclick="viewDetails('diamond Bracelet 2')">View Details</button>
+               <button onclick="addToCart('diamond Bracelet 2')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="chain" data-price="310700">
+               <img src="diamond_chain2.webp" alt="diamond Chain 2">
+               <p>diamond chain </p>
+               <p class="price">310700</p>
+               <button onclick="viewDetails('diamond Chain 2')">View Details</button>
+               <button onclick="addToCart('diamond Chain 2')">Add to Cart</button>
+            </div>
+         </div>
+         <div id="productModal" class="modal">
+            <div class="modal-content">
+               <span class="close" onclick="closeModal()">&times;</span>
+               <img id="modalImg" src="" alt="Product Image">
+               <h2 id="modalTitle"></h2>
+               <p><strong>Type:</strong> <span id="modalType"></span></p>
+               <p><strong>Gold Weight:</strong> <span id="modalGoldWeight"></span> g</p>
+               <p><strong>Diamond Weight:</strong> <span id="modalDiamondWeight"></span> ct</p>
+               <p><strong>Wastage:</strong> <span id="modalWastage"></span>%</p>
+               <p><strong>Making Charges:</strong> ₹<span id="modalMaking"></span> per gram</p>
+               <p><strong>Total Cost:</strong> ₹<span id="modalTotal"></span></p>
+            </div>
+         </div>
+      </main>
+      <div class="footer">
+         <p>Contact: 7373033567 | Visit us at: 435, Main Bazzar, Vellore. | Mail: </p>
+         <a href="#">WhatsApp</a> | <a href="#">Facebook</a> | <a href="#">Instagram</a>
+         <p>&copy; 2025 Ohm Samundesvarri Jewellery All Rights Reserved.</p>
+      </div>
+      <script>
+         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+         
+         function openMenu() {
+             document.getElementById("sidebar").style.left = "0";
+         }
+         
+         function closeMenu() {
+             document.getElementById("sidebar").style.left = "-250px";
+         }
+         
+         function filterProducts(category) {
+             const products = document.querySelectorAll('.product');
+             products.forEach(product => {
+                 if (category === 'all' || product.getAttribute('data-category') === category) {
+                     product.style.display = 'block';
+                 } else {
+                     product.style.display = 'none';
+                 }
+             });
+         }
+         
+         function sortProducts() {
+             const container = document.getElementById('productContainer');
+             const products = Array.from(container.children);
+             const sortValue = document.getElementById('sortSelect').value;
+         
+             products.sort((a, b) => {
+                 const priceA = parseFloat(a.getAttribute('data-price'));
+                 const priceB = parseFloat(b.getAttribute('data-price'));
+                 if (sortValue === 'priceAsc') {
+                     return priceA - priceB;
+                 } else if (sortValue === 'priceDesc') {
+                     return priceB - priceA;
+                 }
+                 return 0;
+             });
+         
+             container.innerHTML = '';
+             products.forEach(product => {
+                 container.appendChild(product);
+             });
+         }
+         
+         function viewDetails(productName) {
+             const products = {
+                 "diamond Ring": { img: "diamond_ring.webp", type: "Ring", goldweight: 5, diamondweight: 0.2, wastage: 12, making: 1000, pricePerGram: 8425, diamondprice: 76500 },
+                 "diamond Chain": { img: "diamond_chain.webp", type: "Chain", goldweight: 20, diamondweight: 0.5, wastage: 12, making: 1000, pricePerGram: 8425, diamondprice: 77000 },
+                 "diamond Bracelet": { img: "diamond_bracelet.webp", type: "Bracelet", goldweight: 8, diamondweight: 0.3, wastage: 12, making: 1000, pricePerGram: 8425, diamondprice: 76500 },
+                 "diamond Ring 2": { img: "diamond_ring2.webp", type: "Ring", goldweight: 6, diamondweight: 0.5, wastage: 12, making: 1000, pricePerGram: 8425, diamondprice: 76500 },
+                 "diamond Bracelet 2": { img: "diamond_bracelet2.webp", type: "Bracelet", goldweight: 10, diamondweight: 0.8, wastage: 12, making: 1000, pricePerGram: 8425, diamondprice: 87000 },
+                 "diamond Chain 2": { img: "diamond_chain2.webp", type: "Chain", goldweight: 25, diamondweight: 0.6, wastage: 12, making: 1000, pricePerGram: 8425, diamondprice: 83000 }
+             };
+         
+             const product = products[productName];
+         
+             if (product) {
+                 let goldCost = product.goldweight * product.pricePerGram;
+                 let diamondCost = product.diamondweight * product.diamondprice;
+                 let wastageCost = (goldCost * product.wastage) / 100;
+                 let makingCharges = product.goldweight * product.making;
+                 let totalCost = diamondCost + goldCost + wastageCost + makingCharges;
+         
+                 document.getElementById('modalImg').src = product.img;
+                 document.getElementById('modalTitle').innerText = productName;
+                 document.getElementById('modalType').innerText = product.type;
+                 document.getElementById('modalGoldWeight').innerText = product.goldweight;
+                 document.getElementById('modalDiamondWeight').innerText = product.diamondweight;
+                 document.getElementById('modalWastage').innerText = product.wastage;
+                 document.getElementById('modalMaking').innerText = product.making;
+                 document.getElementById('modalTotal').innerText = totalCost.toLocaleString("en-IN");
+         
+                 document.getElementById('productModal').style.display = "flex";
+             }
+         }
+         
+         function closeModal() {
+             document.getElementById('productModal').style.display = "none";
+         }
+         
+         window.onclick = function(event) {
+             const modal = document.getElementById('productModal');
+             if (event.target === modal) {
+                 closeModal();
+             }
+         }
+         
+         function addToCart(productName) {
+             const products = {
+                 "diamond Ring": { goldWeight: 5, diamondweight: 0.2, pricePerGram: 8425, diamondprice: 76500, wastage: 12, making: 1000 },
+                 "diamond Chain": { goldWeight: 20, diamondweight: 0.5, pricePerGram: 8425, diamondprice: 77000, wastage: 12, making: 1000 },
+                 "diamond Bracelet": { goldWeight: 8, diamondweight: 0.3, pricePerGram: 8425, diamondprice: 76500, wastage: 12, making: 1000 },
+                 "diamond Ring 2": { goldWeight: 6, diamondweight: 0.5, pricePerGram: 8425, diamondprice: 76500, wastage: 12, making: 1000 },
+                 "diamond Bracelet 2": { goldWeight: 10, diamondweight: 0.8, pricePerGram: 8425, diamondprice: 87000, wastage: 12, making: 1000 },
+                 "diamond Chain 2": { goldWeight: 25, diamondweight: 0.6, pricePerGram: 8425, diamondprice: 83000, wastage: 12, making: 1000 }
+             };
+         
+             const product = products[productName];
+         
+             if (product) {
+                 let goldCost = product.goldWeight * product.pricePerGram;
+                 let diamondCost = product.diamondweight * product.diamondprice;
+                 let wastageCost = (goldCost * product.wastage) / 100;
+                 let makingCharges = product.goldWeight * product.making;
+                 let totalCost = diamondCost + goldCost + wastageCost + makingCharges;
+         
+                 const cartItem = {
+                     name: productName
+                 };
+         
+                 cart.push(cartItem);
+                 localStorage.setItem('cart', JSON.stringify(cart));
+                 alert(`${productName} has been added to your cart!`);
+             }
+         }
+      </script>
+   </body>
+</html>
